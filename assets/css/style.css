@@ -1,0 +1,23 @@
+:root{
+    --backGroundC:rgb(17, 4, 48);
+    --wrong-answer:red;
+    --correct-answer:green;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    width:100%;
+    height: 100vh;
+    background-color: var(--backGroundC);
+    padding:0;
+    margin: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
