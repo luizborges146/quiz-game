@@ -1,7 +1,7 @@
 :root{
     --backGroundC:rgb(1, 95, 124);
-    --wrong-answer:red;
-    --correct-answer:green;
+    --wrong-answer:rgb(189, 37, 37);
+    --correct-answer:rgb(33, 146, 38);
     --offWhite:rgb(243, 233, 233);
 }
 
@@ -28,15 +28,46 @@ main {
     width:700px;
 }
 
+#question{
+    font-weight: bolder;
+    font-size: 22px;
+    margin:0px 0px 15px 0px
+}
+
 .btn {
     border-radius: 5px;
     padding: 5px 10px;
     border: 1px solid black;
     background-color: 1px solid hsl(200, 100%, 30%);
-    
+    margin:5px 0px;
+}
+.btn.correct{
+    background-color: var(--correct-answer);
+}
+
+.btn.wrong {
+    background-color: var(--wrong-answer);
+}
+
+.btn-list{
+    display: grid;
 }
 
 .btn:hover{
     border-color: black;
     box-shadow: 0 0 2px 1px;
 }
+
+.options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start-btn,
+.next-btn,
+.score-btn{
+    font-weight: bold;
+    padding:10px 15px;
+}
+
