@@ -36,7 +36,7 @@ function nextQuestion() {
 // create a function that display the question
 function displayQuestion(question) {
     questionEle.innerText = question.question; //property sets or returns the text content of an element.
-    question.answer.forEach(answer =>{
+    question.answer.forEach(answer =>{// create random select a question 
         var button = document.createElement("button")
         button.innerText = answer.option;
         button.classList.add("btn");
@@ -47,7 +47,7 @@ function displayQuestion(question) {
     })
     
 }
-
+// will hide the HTML button child
 function resetState() {
     nextBtn.classList.add("hide");
     while(answerBtn.firstChild) {
@@ -55,10 +55,22 @@ function resetState() {
     }
   }
 
+function selectAnswer(e) {
+    var selectBtn= e.target;
+    var correct = selectBtn.dataset.correct;
+    setStatusClass(document.body,correct);
+    Array.from(answerBtn.children).forEach(button =>{
+        setStatusClass(button, button.dataset.correct)
+    });
+    if(randomQuestion.length > currentIndex +1) {
+        nextBtn.classList.remove("hide")
+      } else {
+        startBtn.innerText = "Restart";
+        startBtn.classList.remove("hide")
+      }
+}
 
-// create a function to random select a question  
-
-// create an object array that contain the questions and answers 
+// create an array object that contain the questions and answers 
 
 var questions = [
     {
