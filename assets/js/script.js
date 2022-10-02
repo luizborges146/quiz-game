@@ -9,16 +9,19 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
+var randomQuestion, currentIndex;
+
 startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
+
+var maxScore = 0; // hold the score
+    
+var gameScore = 0; // count the score
+
 
 nextBtn.addEventListener("click", ()=> {
     currentIndex++;
-    setNextQuestion()
+    nextQuestion()
   })
-
-    // hold the score
-    // count the score
-var randomQuestion, currentIndex;
 
 // function to start the game
 function startGame(){
