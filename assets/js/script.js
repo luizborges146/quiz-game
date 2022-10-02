@@ -17,8 +17,11 @@ startBtn.addEventListener("click",startGame); //eventListener to activate start 
 // function to start the game
 function startGame(){
     startBtn.classList.add("hide");
-
+    scoreBtn.classList.add("hide");
+    //remove the class hide from html
     questionCardEle.classList.remove("hide");
+    nextBtn.classList.remove("hide");
+
 
 
 }
