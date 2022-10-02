@@ -3,6 +3,7 @@
     --wrong-answer:rgb(189, 37, 37);
     --correct-answer:rgb(33, 146, 38);
     --offWhite:rgb(243, 233, 233);
+    --hue-correct:145;
 }
 
 *{
@@ -48,7 +49,7 @@ main {
     margin:5px 0px;
 }
 .btn.correct{
-    background-color: var(--correct-answer);
+    --hue:var(--hue-correct);
 }
 
 .btn.wrong {
