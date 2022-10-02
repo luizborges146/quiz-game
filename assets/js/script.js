@@ -11,6 +11,11 @@ var answerBtn = document.getElementById("answer-buttons")// get the answer eleme
 
 startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
 
+nextBtn.addEventListener("click", ()=> {
+    currentIndex++;
+    setNextQuestion()
+  })
+
     // hold the score
     // count the score
 var randomQuestion, currentIndex;
@@ -42,8 +47,9 @@ function displayQuestion(question) {
         button.classList.add("btn");
         if(answer.correct) {
         button.dataset.correct = answer.correct;
-  }
-        answerBtn.appendChild(button);
+    }
+    button.addEventListener("click",selectAnswer)
+    answerBtn.appendChild(button);
     })
     
 }
@@ -69,6 +75,21 @@ function selectAnswer(e) {
         startBtn.classList.remove("hide")
       }
 }
+
+function setStatusClass(element,correct) {
+    clearStatusClass(element)
+    if(correct) {
+      element.classList.add("correct")
+    } else {
+      element.classList.add("wrong"); 
+    }
+  }
+  
+/*This is to clear it out the classList*/
+function clearStatusClass(element) {
+    element.classList.remove("correct");
+    element.classList.remove("wrong");
+  }
 
 // create an array object that contain the questions and answers 
 
