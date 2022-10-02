@@ -4,6 +4,7 @@ var startBtn = document.getElementById("start-btn");
 var nextBtn = document.getElementById("next-btn");
 var scoreBtn = document.getElementById("score-btn");
 
+
 var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
@@ -12,7 +13,7 @@ startBtn.addEventListener("click",startGame); //eventListener to activate start 
 
     // hold the score
     // count the score
-    var randomQuestion, currentIndex;
+var randomQuestion, currentIndex;
 
 // function to start the game
 function startGame(){
@@ -22,11 +23,11 @@ function startGame(){
     randomQuestion = questions.sort(() => Math.random() -.5); // added negative number to sort in oppo way
     currentIndex = 0;
     questionCardEle.classList.remove("hide");
-    nextBtn.classList.remove("hide");
     nextQuestion();
 }
 // function to move to  the next question
 function nextQuestion() {
+    resetState();
     displayQuestion(randomQuestion[currentIndex]);
 }
 
@@ -40,12 +41,20 @@ function displayQuestion(question) {
         button.innerText = answer.option;
         button.classList.add("btn");
         if(answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
+        button.dataset.correct = answer.correct;
+  }
         answerBtn.appendChild(button);
     })
     
 }
+
+function resetState() {
+    nextBtn.classList.add("hide");
+    while(answerBtn.firstChild) {
+        answerBtn.removeChild(answerBtn.firstChild)
+    }
+  }
+
 
 // create a function to random select a question  
 
