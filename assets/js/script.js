@@ -9,6 +9,8 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
+var score = 0;
+
 var randomQuestion, currentIndex;
 
 startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
@@ -75,14 +77,16 @@ function selectAnswer(e) {
         nextBtn.classList.remove("hide")
       } else {
         startBtn.innerText = "Restart";
-        startBtn.classList.remove("hide")
+        startBtn.classList.remove("hide"); //  if the user complete all the questions, give the option to restart or add to the score.
+        scoreBtn.classList.remove("hide"); 
       }
 }
 
 function setStatusClass(element,correct) {
     clearStatusClass(element)
     if(correct) {
-      element.classList.add("correct")
+      element.classList.add("correct");
+      
     } else {
       element.classList.add("wrong"); 
     }
@@ -98,48 +102,84 @@ function clearStatusClass(element) {
 
 var questions = [
     {
-        question: "Question number 1",
+        question: "How do you create a variable in JavaScript?",
         answer:[
-            {option: "1985", correct:false},
-            {option: "1986", correct:false},
-            {option: "1987", correct:true},
-            {option: "1988", correct:false},
+            {option: "100", correct:false},
+            {option: "var = 100", correct:false},
+            {option: "var number = 100", correct:true},
+            {option: "var num: 100", correct:false},
         ]
     },
     {
-        question: "Question number 2",
+        question: "What are the JavaScript data types?",
         answer:[
-            {option: "1985", correct:true},
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
+            {option: "Number, String, Boolean, Object, Undefined, Function, Null", correct:true},
+            {option: "Number, Method, Array, Object, Undefined", correct:false},
+            {option: "Number, String, Array", correct:false},
+            {option: "Number, Method, Null, Object, Undefined", correct:false},
         ]
     },
     {
-        question: "Question number 3",
+        question: "What are the 3 keyword in JavaScript to create a variable?",
         answer:[
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
-            {option: "1985", correct:true},
-            {option: "1985", correct:false},
+            {option: "var, test, const", correct:false},
+            {option: "var, let, null", correct:false},
+            {option: "var, let, const", correct:true},
+            {option: "var1, let, const", correct:false},
         ]
     },
     {
-        question: "Question number 4",
+        question: "var num = 5; var str = '5'",
         answer:[
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
-            {option: "1985", correct:true},
+            {option: "(num === str) = true", correct:false},
+            {option: "!(num === str) = false", correct:false},
+            {option: "!(num == str) = true", correct:false},
+            {option: "(num == str) = true", correct:true},
         ]
     },
     {
-        question: "Question number 5?",
+        question: "Which Company developed JavaScript?",
         answer:[
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
-            {option: "1985", correct:false},
-            {option: "1985", correct:true},
+            {option: "Sun Microsystems", correct:false},
+            {option: "NetBeans", correct:false},
+            {option: "Apache", correct:false},
+            {option: "Netscape company", correct:true},
+        ]
+    },
+    {
+        question: "What is meant by NULL in JavaScript?",
+        answer:[
+            {option: "If no value has been given to the variable", correct:true},
+            {option: "A variable that has been re-assigned", correct:false},
+            {option: "When a variable is created equal to 0", correct:false},
+            {option: "None the above", correct:false},
+        ]
+    },
+    {
+        question: "What are the pop-ups available in JavaScript?",
+        answer:[
+            {option: "Prompt, Alert, Banner", correct:false},
+            {option: "Alert, Prompt, and Confirm.", correct:true},
+            {option: "Confirmation, Alert, Prompt", correct:false},
+            {option: "Prompt, Pop-up, Alert", correct:false},
+        ]
+    },
+    {
+        question: "What is the Different between Null and Undefined?",
+        answer:[
+            {option: "undefined & null - assign a zero value to the variable", correct:false},
+            {option: "undefined & null - no value for the variable", correct:false},
+            {option: "undefined - assign a zero value to the variable, null - no value for the variable", correct:false},
+            {option: "undefined - no value for the variable, null - we assign a zero value to the variable", correct:true},
+        ]
+    },
+    {
+        question: "How to submit a form in JavaScript?",
+        answer:[
+            {option: ".submit(form)", correct:false},
+            {option: "form[index].submit();", correct:false},
+            {option: "document.submit();", correct:false},
+            {option: "document.form[index].submit();", correct:true},
         ]
     },
 ]
