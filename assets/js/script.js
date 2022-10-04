@@ -18,7 +18,7 @@ var form = document.getElementById("form");// ----------------------add the Scor
 
 var countHeader = document.getElementById("countDown");// ----------------------add the Score page
 var timeDown = document.querySelector(".time");// ----------------------add the Score page
-var timeLeft = 60;
+var timeLeft = 10;
 
 
 var randomQuestion, currentIndex;
@@ -29,9 +29,11 @@ scoreBtn.addEventListener("click",score); // -------------------------------add 
 var gameScore = 0; // count the score
 
 
+
 nextBtn.addEventListener("click", ()=> {
     
     currentIndex++;
+    console.log(currentIndex + "  check current index ");//check the next index
     nextQuestion()
   })
 
@@ -93,7 +95,7 @@ function resetState() {
 
 function selectAnswer(e) {
     var selectBtn= e.target;
-    console.log(e.target + " selectAnswer");//checking the returning information
+    //console.log(e.target + " selectAnswer");//checking the returning information
     var correct = selectBtn.dataset.correct;
     setStatusClass(document.body,correct);
     Array.from(answerBtn.children).forEach(button =>{
@@ -116,7 +118,7 @@ function setStatusClass(element,correct) {
     if(correct) {
       element.classList.add("correct");
       gameScore++;
-      console.log(gameScore);
+      //console.log(gameScore);
       
     } else {
       element.classList.add("wrong"); 
@@ -222,7 +224,8 @@ function setTimer() {
         } else {
             timeDown.textContent ="";
             clearInterval(timerInterval);
-            //------------------------------------------------------------------------
+            currentIndex = randomQuestion.length;// add the length of the question to the last one, so the user can no longer answer question, unless start a new game.
+            
         }
     }, 1000)
     
