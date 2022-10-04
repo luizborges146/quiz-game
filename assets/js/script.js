@@ -127,12 +127,8 @@ function setStatusClass(element,correct) {
       
     } else {
         element.classList.add("wrong");
-        
     }
 
-    if(data-correct === false) {
-        console.log("data-correct === false");
-    }
 }
   
 /*This is to clear it out the classList*/
