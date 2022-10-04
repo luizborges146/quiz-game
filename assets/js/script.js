@@ -9,11 +9,14 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
+var form = document.getElementById("form");
+
 var score = 0;
 
 var randomQuestion, currentIndex;
 
-startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
+//startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
+scoreBtn.addEventListener("click",score);
 
 var maxScore = 0; // hold the score
     
@@ -35,6 +38,13 @@ function startGame(){
     questionCardEle.classList.remove("hide");
     nextQuestion();
 }
+
+function score() {
+    form.classList.remove("hide");
+    
+}
+
+
 // function to move to  the next question
 function nextQuestion() {
     resetState();
@@ -82,6 +92,8 @@ function selectAnswer(e) {
       }
 }
 
+
+
 function setStatusClass(element,correct) {
     clearStatusClass(element)
     if(correct) {
@@ -90,13 +102,13 @@ function setStatusClass(element,correct) {
     } else {
       element.classList.add("wrong"); 
     }
-  }
+}
   
 /*This is to clear it out the classList*/
 function clearStatusClass(element) {
     element.classList.remove("correct");
     element.classList.remove("wrong");
-  }
+}
 
 // create an array object that contain the questions and answers 
 
