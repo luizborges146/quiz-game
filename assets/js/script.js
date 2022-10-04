@@ -9,14 +9,17 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
-var form = document.getElementById("form");
+var form = document.getElementById("form");// ----------------------add the Score page
 
-var score = 0;
+var countHeader = document.getElementById("countDown");// ----------------------add the Score page
+var timeDown = document.querySelector(".time");// ----------------------add the Score page
+var timeLeft = 10;
+
 
 var randomQuestion, currentIndex;
 
-//startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
-scoreBtn.addEventListener("click",score);
+startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
+//scoreBtn.addEventListener("click",score); // -------------------------------add the Score page
 
 var maxScore = 0; // hold the score
     
@@ -36,13 +39,16 @@ function startGame(){
     randomQuestion = questions.sort(() => Math.random() -.5); // added negative number to sort in oppo way
     currentIndex = 0;
     questionCardEle.classList.remove("hide");
+    countHeader.classList.remove("hide");// -------------------------------add the Score page
+    setTimer()
     nextQuestion();
 }
 
-function score() {
-    form.classList.remove("hide");
-    
-}
+// function score(event) { // ----------------------------------------------add the Score page
+//     event.preventDefault();
+//     form.classList.remove("hide");
+
+// }
 
 
 // function to move to  the next question
@@ -195,3 +201,16 @@ var questions = [
         ]
     },
 ]
+
+function setTimer() {
+    var timerInterval = setInterval(function(){
+        if (timeLeft > 0) {
+            timeDown.textContent = timeLeft + "second remaining"
+            timeLeft--;
+        } else {
+            timeDown.textContent ="";
+            clearInterval(timerInterval);
+            //------------------------------------------------------------------------
+        }
+    }, 1000)
+}
