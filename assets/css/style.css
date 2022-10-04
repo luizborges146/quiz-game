@@ -86,6 +86,12 @@ main {
     align-items: center;
 }
 
+form {
+   
+    padding-top: 30px;
+    font-weight: bold;
+}
+
 .start-btn,
 .next-btn,
 .score-btn{

@@ -9,6 +9,9 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
+var userName = document.querySelector("#user-Name"); // display user Name
+var userHighScore = document.querySelector("#user-highScore"); //display the user highScore
+
 var userName = document.querySelector("#name");
 
 var form = document.getElementById("form");// ----------------------add the Score page
@@ -21,12 +24,9 @@ var timeLeft = 60;
 var randomQuestion, currentIndex;
 
 startBtn.addEventListener("click",startGame); //eventListener to activate start btn, it also call the function startGame
-//scoreBtn.addEventListener("click",score); // -------------------------------add the Score page
+scoreBtn.addEventListener("click",score); // -------------------------------add the Score page
 
-var maxScore = 0; // hold the score
-    
 var gameScore = 0; // count the score
-
 
 
 nextBtn.addEventListener("click", ()=> {
@@ -37,8 +37,10 @@ nextBtn.addEventListener("click", ()=> {
 
 // function to start the game
 function startGame(){
+    gameScore = 0;
     startBtn.classList.add("hide");
     scoreBtn.classList.add("hide");
+    form.classList.add("hide");
     //remove the class hide from html
     randomQuestion = questions.sort(() => Math.random() -.5); // added negative number to sort in oppo way
     currentIndex = 0;
@@ -48,11 +50,13 @@ function startGame(){
     nextQuestion();
 }
 
-// function score(event) { // ----------------------------------------------add the Score page
-//     event.preventDefault();
-//     form.classList.remove("hide");
+ function score(event) { // ----------------------------------------------add the Score page
+    event.preventDefault();
+    form.classList.remove("hide");
 
-// }
+    userHighScore.textContent = localStorage.getItem("lastScore");
+
+}
 
 
 // function to move to  the next question
@@ -101,7 +105,7 @@ function selectAnswer(e) {
         startBtn.innerText = "Restart";
         startBtn.classList.remove("hide"); //  if the user complete all the questions, give the option to restart or add to the score.
         scoreBtn.classList.remove("hide"); 
-        localStorage.setItem("Last Score", gameScore);
+        localStorage.setItem("lastScore", gameScore);
       }
 }
 
