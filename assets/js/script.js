@@ -9,11 +9,13 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
+var userName = document.querySelector("#name");
+
 var form = document.getElementById("form");// ----------------------add the Score page
 
 var countHeader = document.getElementById("countDown");// ----------------------add the Score page
 var timeDown = document.querySelector(".time");// ----------------------add the Score page
-var timeLeft = 10;
+var timeLeft = 60;
 
 
 var randomQuestion, currentIndex;
@@ -26,7 +28,9 @@ var maxScore = 0; // hold the score
 var gameScore = 0; // count the score
 
 
+
 nextBtn.addEventListener("click", ()=> {
+    
     currentIndex++;
     nextQuestion()
   })
@@ -53,6 +57,7 @@ function startGame(){
 
 // function to move to  the next question
 function nextQuestion() {
+    gameScore--;
     resetState();
     displayQuestion(randomQuestion[currentIndex]);
 }
@@ -67,7 +72,7 @@ function displayQuestion(question) {
         button.innerText = answer.option;
         button.classList.add("btn");
         if(answer.correct) {
-        button.dataset.correct = answer.correct;
+            button.dataset.correct = answer.correct;
     }
     button.addEventListener("click",selectAnswer)
     answerBtn.appendChild(button);
@@ -84,6 +89,7 @@ function resetState() {
 
 function selectAnswer(e) {
     var selectBtn= e.target;
+    console.log(e.target + " selectAnswer");//checking the returning information
     var correct = selectBtn.dataset.correct;
     setStatusClass(document.body,correct);
     Array.from(answerBtn.children).forEach(button =>{
@@ -95,6 +101,7 @@ function selectAnswer(e) {
         startBtn.innerText = "Restart";
         startBtn.classList.remove("hide"); //  if the user complete all the questions, give the option to restart or add to the score.
         scoreBtn.classList.remove("hide"); 
+        localStorage.setItem("Last Score", gameScore);
       }
 }
 
@@ -104,6 +111,8 @@ function setStatusClass(element,correct) {
     clearStatusClass(element)
     if(correct) {
       element.classList.add("correct");
+      gameScore++;
+      console.log(gameScore);
       
     } else {
       element.classList.add("wrong"); 
@@ -117,7 +126,6 @@ function clearStatusClass(element) {
 }
 
 // create an array object that contain the questions and answers 
-
 var questions = [
     {
         question: "How do you create a variable in JavaScript?",
@@ -205,7 +213,7 @@ var questions = [
 function setTimer() {
     var timerInterval = setInterval(function(){
         if (timeLeft > 0) {
-            timeDown.textContent = timeLeft + "second remaining"
+            timeDown.textContent = timeLeft + " second remaining"
             timeLeft--;
         } else {
             timeDown.textContent ="";
@@ -213,4 +221,8 @@ function setTimer() {
             //------------------------------------------------------------------------
         }
     }, 1000)
+    
 }
+
+
+
