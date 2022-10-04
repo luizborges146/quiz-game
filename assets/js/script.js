@@ -9,8 +9,10 @@ var questionCardEle = document.getElementById("question-card");
 var questionEle = document.getElementById("question"); // get the questions
 var answerBtn = document.getElementById("answer-buttons")// get the answer element
 
-var userName = document.querySelector("#user-Name"); // display user Name
+var userNameLS = document.querySelector("#user-Name"); // display user Name
+var submitBtn = document.querySelector("#submit");
 var userHighScore = document.querySelector("#user-highScore"); //display the user highScore
+
 
 var userName = document.querySelector("#name");
 
@@ -18,7 +20,7 @@ var form = document.getElementById("form");// ----------------------add the Scor
 
 var countHeader = document.getElementById("countDown");// ----------------------add the Score page
 var timeDown = document.querySelector(".time");// ----------------------add the Score page
-var timeLeft = 10;
+var timeLeft = 60;
 
 
 var randomQuestion, currentIndex;
@@ -33,7 +35,7 @@ var gameScore = 0; // count the score
 nextBtn.addEventListener("click", ()=> {
     
     currentIndex++;
-    console.log(currentIndex + "  check current index ");//check the next index
+    //console.log(currentIndex + "  check current index ");//check the next index
     nextQuestion()
   })
 
@@ -57,6 +59,8 @@ function startGame(){
     form.classList.remove("hide");
 
     userHighScore.textContent = localStorage.getItem("lastScore");
+    userNameLS.textContent = localStorage.getItem("userName1");
+
 
 }
 
@@ -79,6 +83,8 @@ function displayQuestion(question) {
         button.classList.add("btn");
         if(answer.correct) {
             button.dataset.correct = answer.correct;
+            
+    
     }
     button.addEventListener("click",selectAnswer)
     answerBtn.appendChild(button);
@@ -95,7 +101,7 @@ function resetState() {
 
 function selectAnswer(e) {
     var selectBtn= e.target;
-    //console.log(e.target + " selectAnswer");//checking the returning information
+    console.log(e.target);//checking the returning information
     var correct = selectBtn.dataset.correct;
     setStatusClass(document.body,correct);
     Array.from(answerBtn.children).forEach(button =>{
@@ -108,20 +114,24 @@ function selectAnswer(e) {
         startBtn.classList.remove("hide"); //  if the user complete all the questions, give the option to restart or add to the score.
         scoreBtn.classList.remove("hide"); 
         localStorage.setItem("lastScore", gameScore);
+        
       }
 }
-
-
 
 function setStatusClass(element,correct) {
     clearStatusClass(element)
     if(correct) {
       element.classList.add("correct");
       gameScore++;
-      //console.log(gameScore);
+      
       
     } else {
-      element.classList.add("wrong"); 
+        element.classList.add("wrong");
+        
+    }
+
+    if(data-correct === false) {
+        console.log("data-correct === false");
     }
 }
   
@@ -225,11 +235,15 @@ function setTimer() {
             timeDown.textContent ="";
             clearInterval(timerInterval);
             currentIndex = randomQuestion.length;// add the length of the question to the last one, so the user can no longer answer question, unless start a new game.
-            
         }
     }, 1000)
     
 }
 
 
-
+submit.addEventListener("click", function(e){
+    e.preventDefault();
+    // userName = document.querySelector("#name").value;
+    // localStorage.setItem("userName1", userName);
+    
+});
