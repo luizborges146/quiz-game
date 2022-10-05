@@ -7,7 +7,7 @@ The application is a quiz game about JavaScript, it allow the user to see their 
 The game stop when the user answer all the questions or  when the time finishes. Once it finish, the user will see the Name, to add the name and the Max score will be available for the user.
 
 
-### Link to the password generator: [Quiz Game]()
+### Link to the password generator: [Quiz Game](https://luizborges146.github.io/quiz-game/)
 
 ## Installation
 
